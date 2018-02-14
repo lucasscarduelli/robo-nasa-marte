@@ -2,6 +2,7 @@ package com.scarduelli.robo.nasa.resource;
 
 import com.scarduelli.robo.nasa.model.Posicao;
 import com.scarduelli.robo.nasa.model.Robo;
+import com.scarduelli.robo.nasa.service.RoboService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,15 +20,15 @@ public class RoboResource {
     public RoboResource() {
     }
     
-    @RequestMapping(value = "/{movimento}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{movimentos}", method = RequestMethod.POST)
     public ResponseEntity<String> 
-        movientar(@PathVariable("movimento") String movimento) {
+        movientar(@PathVariable("movimentos") String movimentos) {
         
         try {
-            final Robo robo = new Robo();
-            final Posicao posicao = robo.movimentar(movimento);
-
-            return new ResponseEntity<>(posicao.toString(), HttpStatus.OK);
+            Robo robo = Robo.Builder.create().posicaoInicial().build();
+            robo = RoboService.movimentar(robo, movimentos);
+            String retorno = robo.getPosicao().toString();
+            return new ResponseEntity<>(retorno, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
