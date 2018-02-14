@@ -18,6 +18,7 @@ public enum Orientacao {
     }
 
     private Orientacao fromValue(final String value) {
+
         for(Orientacao orientacao : values()) {
             if (orientacao.letra.equals(value)) return orientacao;
         }
@@ -30,5 +31,9 @@ public enum Orientacao {
     
     public Orientacao getEsquerda() {
         return fromValue(this.esquerda);
+    }
+    
+    public String getLetra() {
+        return this.letra;
     }
 }

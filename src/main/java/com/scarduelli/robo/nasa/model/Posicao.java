@@ -45,6 +45,12 @@ public class Posicao {
         return this.orientacao;
     }
 
+    @Override
+    public String toString() {
+        return "(" + this.getX() + ", " + this.getY() + ", " + 
+                this.getOrientacao().getLetra() + ")";
+    }
+
     public boolean validar() {
         
         if (this.getX() < 0 || this.getX() > 5) {
