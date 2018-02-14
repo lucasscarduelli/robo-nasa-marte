@@ -27,4 +27,20 @@ public class OrientacaoTest {
                 .getEsquerda().getEsquerda(), Orientacao.N);
     }
     
+    @Test
+    public void testarTodosParaDireita() {
+        assertEquals(Orientacao.N.getDireita(), Orientacao.E);
+        assertEquals(Orientacao.E.getDireita(), Orientacao.S);
+        assertEquals(Orientacao.S.getDireita(), Orientacao.W);
+        assertEquals(Orientacao.W.getDireita(), Orientacao.N);
+    }
+        
+    @Test
+    public void testarTodosParaEsquerda() {
+        assertEquals(Orientacao.N.getEsquerda(), Orientacao.W);
+        assertEquals(Orientacao.E.getEsquerda(), Orientacao.N);
+        assertEquals(Orientacao.S.getEsquerda(), Orientacao.E);
+        assertEquals(Orientacao.W.getEsquerda(), Orientacao.S);
+    }
+        
 }
