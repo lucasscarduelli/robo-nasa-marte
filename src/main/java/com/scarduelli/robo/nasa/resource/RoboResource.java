@@ -1,6 +1,5 @@
 package com.scarduelli.robo.nasa.resource;
 
-import com.scarduelli.robo.nasa.model.Posicao;
 import com.scarduelli.robo.nasa.model.Robo;
 import com.scarduelli.robo.nasa.service.RoboService;
 import org.springframework.http.HttpStatus;
