@@ -16,7 +16,7 @@ public class RoboTest {
     }
 
     @Test
-    public void criarRobo() {
+    public void testCriarRobo() {
         final Robo robo = Robo.Builder.create().posicaoInicial().build();
 
         assertEquals((long) 0, (long) robo.getPosicao().getX());
@@ -25,7 +25,7 @@ public class RoboTest {
     }
 
     @Test
-    public void movimentarOkRotacoesDireita() throws Exception {
+    public void testMovimentarOkRotacoesDireita() throws Exception {
         final String movimentos = "MMRMMRMM";
         final Robo robo = Robo.Builder.create().posicaoInicial().build();
 
@@ -36,7 +36,7 @@ public class RoboTest {
     }
 
     @Test
-    public void movimentarOkMovimentoDireita() throws Exception {
+    public void testMovimentarOkMovimentoDireita() throws Exception {
         final String movimentos = "MML";
         final Robo robo = Robo.Builder.create().posicaoInicial().build();
 
@@ -47,7 +47,7 @@ public class RoboTest {
     }
 
     @Test
-    public void movimentarErroComandoInvalido() {
+    public void testMovimentarErroComandoInvalido() {
         final String movimentos = "AAA";
         final Robo robo = Robo.Builder.create().posicaoInicial().build();
 
@@ -60,7 +60,7 @@ public class RoboTest {
     }
 
     @Test
-    public void movimentarErroPosicaoInvalida() {
+    public void testMovimentarErroPosicaoInvalida() {
         final String movimentos = "MMMMMMMMMMMMMMMMMMMMMMMM";
         final Robo robo = Robo.Builder.create().posicaoInicial().build();
 

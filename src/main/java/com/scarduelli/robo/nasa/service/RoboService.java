@@ -10,6 +10,35 @@ import com.scarduelli.robo.nasa.util.Orientacao;
  */
 public class RoboService {
 
+    private static void movimentarParaFrente(final Robo robo) {
+        switch (robo.getPosicao().getOrientacao()) {
+            case N:
+                robo.getPosicao().setY(robo.getPosicao().getY() + 1);
+                break;
+            case S:
+                robo.getPosicao().setY(robo.getPosicao().getY() - 1);
+                break;
+            case E:
+                robo.getPosicao().setX(robo.getPosicao().getX() + 1);
+                break;
+            case W:
+                robo.getPosicao().setX(robo.getPosicao().getX() - 1);
+                break;
+            default:
+                break;
+        }
+    }
+    
+    private static void movimentarParaEsquerda(final Robo robo) {
+        robo.getPosicao().setOrientacao(
+                robo.getPosicao().getOrientacao().getEsquerda());
+    }
+    
+    private static void movimentarParaDireita(final Robo robo) {
+        robo.getPosicao().setOrientacao(
+                robo.getPosicao().getOrientacao().getDireita());
+    }
+    
     public static Robo movimentar(final Robo robo, final String movimentos) throws Exception {
 
         if (!Comandos.validar(movimentos)) {
@@ -17,25 +46,13 @@ public class RoboService {
         }
 
         for (int i = 0; i < movimentos.length(); i++) {
-            char movimento = movimentos.charAt(i);
-
-            if (movimento == 'M') {
-
-                if (robo.getPosicao().getOrientacao() == Orientacao.N) {
-                    robo.getPosicao().setY(robo.getPosicao().getY() + 1);
-                } else if (robo.getPosicao().getOrientacao() == Orientacao.S) {
-                    robo.getPosicao().setY(robo.getPosicao().getY() - 1);
-                } else if (robo.getPosicao().getOrientacao() == Orientacao.E) {
-                    robo.getPosicao().setX(robo.getPosicao().getX() + 1);
-                } else if (robo.getPosicao().getOrientacao() == Orientacao.W) {
-                    robo.getPosicao().setX(robo.getPosicao().getX() - 1);
-                }
-
-            } else if (movimento == 'L') {
-                robo.getPosicao().setOrientacao(robo.getPosicao().getOrientacao().getEsquerda());
-
-            } else if (movimento == 'R') {
-                robo.getPosicao().setOrientacao(robo.getPosicao().getOrientacao().getDireita());
+            String movimento = String.valueOf(movimentos.charAt(i));
+            
+            switch (movimento) {
+                case "M": movimentarParaFrente(robo); break;
+                case "L": movimentarParaEsquerda(robo); break;
+                case "R": movimentarParaDireita(robo); break;
+                default: break;
             }
 
             if (!robo.getPosicao().validar()) {
